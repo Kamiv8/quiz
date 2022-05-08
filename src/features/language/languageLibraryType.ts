@@ -25,7 +25,16 @@ export interface Library {
 
 }
 
+export interface InitialState {
+  language: Library
+}
+
 export interface LanguageLibraryType {
   pl: Library,
   en: Library
+}
+
+export enum Language {
+  pl,
+  en,
 }
