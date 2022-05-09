@@ -4,6 +4,8 @@ interface ThemeType {
     main: string,
     second: string,
     gray: string,
+    blue: string,
+    black50: string,
   },
   gradients?: {
     html: string,
@@ -29,6 +31,8 @@ const theme: ThemeType = {
     main: '#9cf0c7',
     second: '#e33720',
     gray: '#333333',
+    black50: 'rgba(0,0,0,.5)',
+    blue: '#0075FF',
   },
 
 };

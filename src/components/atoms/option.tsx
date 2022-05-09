@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import VariantType from '../../features/quiz/variantType';
 
 type Props = {
-  variant: 'A' | 'B' | 'C' | 'D',
+  variant: VariantType
   answer: string,
   tickFn: Function,
   active: boolean,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Button = styled.input`
+const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.second};
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.white};
@@ -13,7 +13,7 @@ const Button = styled.input`
   letter-spacing: 1px;
   &:hover {
     color: ${({ theme }) => theme.colors.second};
-    background-color: ${({ theme }) => theme.colors.white};
+    background: none;
   }
 
 `;
