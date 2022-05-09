@@ -1,6 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import gsap from 'gsap';
 import { ReactComponent as Scene } from '../../assets/person.svg';
+
+const Wrapper = styled.div`
+  align-items: end;
+  justify-content: end;
+  width: 100%;
+  display: none;
+  @media ${({ theme }) => theme.device.laptopL} {
+    display: flex;
+  }
+`;
 
 const PersonSvg = () => {
   const wrapper = useRef(null);
@@ -19,9 +30,9 @@ const PersonSvg = () => {
       .to([html, css], { duration: 0.9, autoAlpha: 1, stagger: 0.3 });
   });
   return (
-    <div ref={wrapper}>
+    <Wrapper ref={wrapper}>
       <Scene />
-    </div>
+    </Wrapper>
   );
 };
 

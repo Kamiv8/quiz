@@ -9,6 +9,9 @@ const Select = styled.select`
   font-weight: bold;
   border-radius: 20px;
   padding: 0 10px;
+  background: none;
+  color: ${({ theme }) => theme.colors.second};
+  border: 3px solid ${({ theme }) => theme.colors.second};
 `;
 
 const SelectLanguage = () => {

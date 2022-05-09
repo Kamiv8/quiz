@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAppSelector } from '../../app/hooks';
+import HomeTemplate from '../templates/homeTemplate';
 
 const Home = () => {
   const { language } = useAppSelector((state) => state.language);
   return (
-    <div>
-      {language.home.welcome}
-    </div>
+    <HomeTemplate welcome={language.home.welcome} />
+
   );
 };
 

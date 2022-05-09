@@ -8,9 +8,9 @@ const languageSlice = createSlice({
   initialState,
   reducers: {
     changeLanguage: (state, action: PayloadAction<Language>) => {
-      if (action.payload === Language.pl) {
+      if (+action.payload === Language.pl) {
         state.language = languageLibrary.pl;
-      } else if (action.payload === Language.en) {
+      } else if (+action.payload === Language.en) {
         state.language = languageLibrary.en;
       }
     },
