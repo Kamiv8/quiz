@@ -4,9 +4,15 @@ import Header from '../molecules/header';
 import background from '../../assets/background1.svg';
 import hideAnimation from '../../styles/animations/hideAnimation';
 import PersonSvg from '../atoms/personSvg';
+import Card from '../atoms/card';
+import Title from '../atoms/title';
+import { CardDataType } from '../../hooks/useCardData';
 
 type Props = {
   welcome: string,
+  heading1: string,
+  heading2: string,
+  quizzes: CardDataType[],
 };
 
 const WelcomeSection = styled.section`
@@ -14,7 +20,6 @@ const WelcomeSection = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
-  
 `;
 
 const WelcomeText = styled.p`
@@ -44,14 +49,46 @@ const SVG = styled(PersonSvg)`
   align-items: flex-end;
 `;
 
-const HomeTemplate: React.FC<Props> = ({ welcome }) => (
-  <WelcomeSection>
-    <Header />
-    <ContentWrapper>
-      <WelcomeText>{welcome}</WelcomeText>
-      <SVG />
-    </ContentWrapper>
-  </WelcomeSection>
+const LayoutTitle = styled(Title)`
+    text-align: center;
+    margin: 10vh 0;
+`;
+
+const QuizSection = styled.section`
+  
+`;
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10vw;
+  justify-content: center;
+  gap: 10vh 15vw;
+`;
+
+const HomeTemplate: React.FC<Props> = ({
+  welcome, heading1, heading2, quizzes,
+}) => (
+  <>
+    <WelcomeSection>
+      <Header />
+      <ContentWrapper>
+        <WelcomeText>{welcome}</WelcomeText>
+        <SVG />
+      </ContentWrapper>
+    </WelcomeSection>
+    <QuizSection>
+      <LayoutTitle heading>{heading1}</LayoutTitle>
+      <CardWrapper>
+        {/* eslint-disable-next-line no-console */}
+        {quizzes.map(({ image, type, name }) => <Card key={type} image={image} type={type} name={name} startFn={() => console.log('x')} />)}
+      </CardWrapper>
+    </QuizSection>
+    <section>
+      <LayoutTitle heading>{heading2}</LayoutTitle>
+    </section>
+  </>
+
 );
 
 export default HomeTemplate;

@@ -12,5 +12,4 @@ export interface QuestionWithAnswers {
 
 export interface QuestionModel {
   questions: QuestionWithAnswers[]
-
 }
