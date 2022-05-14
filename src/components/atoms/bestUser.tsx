@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CrownSVG from '../../assets/crown.svg';
+import { useAppSelector } from '../../app/hooks';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -90,22 +91,30 @@ const User = styled.p`
   }
 `;
 
-const BestUser = () => (
-  <Wrapper>
-    <FirstShape />
-    <UserWrapper>
-      <User>USERNAME</User>
-      <UserContent>
-        <div>
-          <p>Quiz:</p>
-          <p>quizName</p>
-        </div>
-        <div>
-          <p>Time:</p>
-          <p>00:10:12</p>
-        </div>
-      </UserContent>
-    </UserWrapper>
-  </Wrapper>
-);
+const BestUser = () => {
+  const { language } = useAppSelector((state) => state.language);
+
+  return (
+    <Wrapper>
+      <FirstShape />
+      <UserWrapper>
+        <User>USERNAME</User>
+        <UserContent>
+          <div>
+            <p>Quiz:</p>
+            <p>quizName</p>
+          </div>
+          <div>
+            <p>
+              {language.words.time}
+              :
+            </p>
+            <p>00:10:12</p>
+          </div>
+        </UserContent>
+      </UserWrapper>
+    </Wrapper>
+  );
+};
+
 export default BestUser;

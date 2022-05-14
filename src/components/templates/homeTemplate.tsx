@@ -74,6 +74,7 @@ const RankingSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5vh;
 `;
 
 const HomeTemplate: React.FC<Props> = ({
