@@ -9,6 +9,7 @@ import Title from '../atoms/title';
 import { CardDataType } from '../../hooks/useCardData';
 import BestUsersTable from '../molecules/bestUsersTable';
 import BestUser from '../atoms/bestUser';
+import Footer from '../molecules/footer';
 
 type Props = {
   welcome: string,
@@ -97,6 +98,7 @@ const HomeTemplate: React.FC<Props> = ({
       <BestUser />
       <BestUsersTable />
     </RankingSection>
+    <Footer />
   </>
 
 );

@@ -11,7 +11,7 @@ const WrapperHeader = styled.header`
   align-items: center;
 `;
 
-const Logo = styled(Link)`
+export const Logo = styled(Link)`
   font-weight: 900;
   color: ${({ theme }) => theme.colors.second};
   font-size: 20px;
