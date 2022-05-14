@@ -7,6 +7,8 @@ import PersonSvg from '../atoms/personSvg';
 import Card from '../atoms/card';
 import Title from '../atoms/title';
 import { CardDataType } from '../../hooks/useCardData';
+import BestUsersTable from '../molecules/bestUsersTable';
+import BestUser from '../atoms/bestUser';
 
 type Props = {
   welcome: string,
@@ -66,6 +68,12 @@ const CardWrapper = styled.div`
   gap: 10vh 15vw;
 `;
 
+const RankingSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const HomeTemplate: React.FC<Props> = ({
   welcome, heading1, heading2, quizzes,
 }) => (
@@ -84,9 +92,11 @@ const HomeTemplate: React.FC<Props> = ({
         {quizzes.map(({ image, type, name }) => <Card key={type} image={image} type={type} name={name} startFn={() => console.log('x')} />)}
       </CardWrapper>
     </QuizSection>
-    <section>
+    <RankingSection>
       <LayoutTitle heading>{heading2}</LayoutTitle>
-    </section>
+      <BestUser />
+      <BestUsersTable />
+    </RankingSection>
   </>
 
 );
