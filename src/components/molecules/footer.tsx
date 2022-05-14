@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Logo } from './header';
 
+type Props = {
+  copy: string
+};
+
 const Wrapper = styled.footer`
   height: 5vh;
   width: calc(100vw - 10px);
@@ -15,10 +19,10 @@ const Wrapper = styled.footer`
   }
 `;
 
-const Footer = () => (
+const Footer: React.FC<Props> = ({ copy }) => (
   <Wrapper>
     <Logo to="/">Quiz</Logo>
-    <p>Copyright all rights reserved. 2022</p>
+    <p>{copy}</p>
   </Wrapper>
 );
 export default Footer;

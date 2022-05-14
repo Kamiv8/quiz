@@ -12,6 +12,7 @@ const Home = () => {
       heading1={language.home.heading1}
       heading2={language.home.heading2}
       quizzes={quizzes}
+      copy={language.words.copyright}
     />
   );
 };

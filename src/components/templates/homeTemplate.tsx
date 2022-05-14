@@ -16,6 +16,7 @@ type Props = {
   heading1: string,
   heading2: string,
   quizzes: CardDataType[],
+  copy: string,
 };
 
 const WelcomeSection = styled.section`
@@ -76,7 +77,7 @@ const RankingSection = styled.section`
 `;
 
 const HomeTemplate: React.FC<Props> = ({
-  welcome, heading1, heading2, quizzes,
+  welcome, heading1, heading2, quizzes, copy,
 }) => (
   <>
     <WelcomeSection>
@@ -98,7 +99,7 @@ const HomeTemplate: React.FC<Props> = ({
       <BestUser />
       <BestUsersTable />
     </RankingSection>
-    <Footer />
+    <Footer copy={copy} />
   </>
 
 );
