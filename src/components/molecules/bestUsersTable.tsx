@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import TableRow from '../atoms/tableRow';
+import { getBestPlayers } from '../../features/ranking/rankingSlice';
 
 const Table = styled.table`
   border: 5px solid ${({ theme }) => theme.colors.main};
@@ -11,16 +12,24 @@ const Table = styled.table`
 `;
 
 const BestUsersTable = () => {
-  const { language } = useAppSelector((state) => state.language);
-  // eslint-disable-next-line no-console
-  console.log(language);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getBestPlayers());
+  }, [dispatch]);
+
+  const users = useAppSelector((state) => state.ranking.players);
   return (
     <Table>
       <tbody>
-        <TableRow index={1} username="ds" quizName="fsd" time="fds" />
-        <TableRow index={2} username="ds" quizName="fsd" time="fds" />
-        <TableRow index={3} username="ds" quizName="fsd" time="fds" />
-        <TableRow index={4} username="ds" quizName="fsd" time="fds" />
+        {users.slice(-9).map(({ username, quizName, time }, i) => (
+          <TableRow
+            key={Math.random()}
+            username={username}
+            quizName={quizName}
+            time={time}
+            index={i + 2}
+          />
+        ))}
       </tbody>
     </Table>
   );

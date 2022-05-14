@@ -93,23 +93,23 @@ const User = styled.p`
 
 const BestUser = () => {
   const { language } = useAppSelector((state) => state.language);
-
+  const [user] = useAppSelector((state) => state.ranking.players);
   return (
     <Wrapper>
       <FirstShape />
       <UserWrapper>
-        <User>USERNAME</User>
+        <User>{user?.username}</User>
         <UserContent>
           <div>
             <p>Quiz:</p>
-            <p>quizName</p>
+            <p>{user?.quizName}</p>
           </div>
           <div>
             <p>
               {language.words.time}
               :
             </p>
-            <p>00:10:12</p>
+            <p>{user?.time}</p>
           </div>
         </UserContent>
       </UserWrapper>
