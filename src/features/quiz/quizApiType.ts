@@ -1,4 +1,5 @@
 import VariantType from './variantType';
+import { QuizName } from '../ranking/dataBestPlayersType';
 
 export interface AnswerType {
   variant: VariantType,
@@ -11,5 +12,6 @@ export interface QuestionWithAnswers {
 }
 
 export interface QuestionModel {
+  type: QuizName,
   questions: QuestionWithAnswers[]
 }

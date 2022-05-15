@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+align-items: center;
 `;
 
 const Close = styled.span`
@@ -31,6 +32,7 @@ const Close = styled.span`
 const CloseWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 `;
 const StartQuiz: React.FC<Props> = ({ title, startQuizFn, closeQuiz }) => (
   <Wrapper>

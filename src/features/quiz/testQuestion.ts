@@ -1,7 +1,6 @@
-import { QuestionWithAnswers } from './features/quiz/quizApiType';
-import VariantType from './features/quiz/variantType';
+import VariantType from './variantType';
 
-const TestQuestion: QuestionWithAnswers[] = [
+const TestQuestion = [
   {
     question: 'What do you think about html?',
     answers: [

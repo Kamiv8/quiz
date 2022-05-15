@@ -1,0 +1,25 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import QuizTemplate from '../templates/quizTemplate';
+import useQuiz from '../../hooks/useQuiz';
+import { useAppSelector } from '../../app/hooks';
+
+const Quiz = () => {
+  const location = useLocation();
+  const { language } = useAppSelector((state) => state.language);
+  const {
+    closeQuiz, startQuiz, isActive, minutes, seconds,
+  } = useQuiz(location.pathname);
+  return (
+
+    <QuizTemplate
+      quizName={language.words.startQuiz}
+      closeQuiz={closeQuiz}
+      startQuizFn={startQuiz}
+      isActive={isActive}
+      time={{ seconds, minutes }}
+    />
+  );
+};
+
+export default Quiz;

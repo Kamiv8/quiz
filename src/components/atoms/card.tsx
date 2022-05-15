@@ -71,7 +71,7 @@ const Card: React.FC<Props> = ({
   <Wrapper type={type}>
     <Image image={image} />
     <Name>{name}</Name>
-    <Button type="button" onClick={() => startFn()}>start</Button>
+    <Button type="button" onClick={() => startFn(type)}>start</Button>
   </Wrapper>
 
 );

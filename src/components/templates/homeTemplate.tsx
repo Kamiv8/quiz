@@ -17,6 +17,7 @@ type Props = {
   heading2: string,
   quizzes: CardDataType[],
   copy: string,
+  selectQuiz: Function;
 };
 
 const WelcomeSection = styled.section`
@@ -78,7 +79,7 @@ const RankingSection = styled.section`
 `;
 
 const HomeTemplate: React.FC<Props> = ({
-  welcome, heading1, heading2, quizzes, copy,
+  welcome, heading1, heading2, quizzes, copy, selectQuiz,
 }) => (
   <>
     <WelcomeSection>
@@ -91,8 +92,15 @@ const HomeTemplate: React.FC<Props> = ({
     <QuizSection>
       <LayoutTitle heading>{heading1}</LayoutTitle>
       <CardWrapper>
-        {/* eslint-disable-next-line no-console */}
-        {quizzes.map(({ image, type, name }) => <Card key={type} image={image} type={type} name={name} startFn={() => console.log('x')} />)}
+        {quizzes.map(({ image, type, name }) => (
+          <Card
+            key={type}
+            image={image}
+            type={type}
+            name={name}
+            startFn={selectQuiz}
+          />
+        ))}
       </CardWrapper>
     </QuizSection>
     <RankingSection>

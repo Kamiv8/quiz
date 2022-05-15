@@ -1,13 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import Title from '../atoms/title';
 import { AnswerType } from '../../features/quiz/quizApiType';
 import Option from '../atoms/option';
 import Button from '../atoms/button';
 import { useAppSelector } from '../../app/hooks';
+import Time from '../atoms/time';
+import { TimerType } from '../../features/game/timerType';
 
 type Props = {
-  time: string,
+  time: TimerType,
   questionNumber: number,
   question: string,
   answers: AnswerType[],
@@ -15,23 +16,20 @@ type Props = {
   tickFn: Function
 };
 
-const Timer = styled.span`
-
-`;
-
 const QuizContent: React.FC<Props> = ({
   time,
   question,
   questionNumber,
   answers,
-  isActive, tickFn,
+  isActive,
+  tickFn,
 }) => {
   const { language } = useAppSelector((state) => state.language);
 
   return (
     <>
       <div>
-        <Timer>{time}</Timer>
+        <Time seconds={time.seconds} minutes={time.minutes} />
         <Title>{question}</Title>
         <span>
           {questionNumber}
