@@ -4,13 +4,19 @@ import background from '../../assets/background1.svg';
 import StartQuiz from '../molecules/startQuiz';
 import QuizContent from '../molecules/quizContent';
 import { TimerType } from '../../features/game/timerType';
+import { AnswerType } from '../../features/quiz/quizApiType';
+import VariantType from '../../features/quiz/variantType';
 
 type Props = {
   quizName: string,
   startQuizFn: Function,
   closeQuiz: Function,
   isActive: boolean,
-  time: TimerType
+  time: TimerType,
+  questionNumber: number,
+  nextQuestion: Function,
+  question: string,
+  answers: AnswerType[]
 };
 
 const Wrapper = styled.main`
@@ -27,12 +33,21 @@ const Wrapper = styled.main`
 const Content = styled.div`
   width: 90%;
   height: 60%;
+  padding: 5vh 10vw;
   background-color: ${({ theme }) => theme.colors.black50};
   border: 5px solid ${({ theme }) => theme.colors.second};
+  max-width: 900px;
+  max-height: 550px;
+  @media screen and ${({ theme }) => theme.device.laptopL} {
+    padding: 1vh 2vw;
+  }
 `;
 
 const QuizTemplate: React.FC<Props> = ({
-  quizName, startQuizFn, closeQuiz, isActive, time,
+  quizName, startQuizFn, closeQuiz, isActive,
+  time,
+  questionNumber,
+  nextQuestion, answers, question,
 }) => (
   <Wrapper>
     <Content>
@@ -47,15 +62,15 @@ const QuizTemplate: React.FC<Props> = ({
             : (
               <QuizContent
                 time={time}
-                questionNumber={1}
-                question="fdsfds"
-                answers={[]}
+                questionNumber={questionNumber}
+                question={question}
+                answers={answers}
                 isActive
-                tickFn={() => console.log('ta')}
+                tickFn={(answer: VariantType) => console.log(answer)}
+                nextQuestion={nextQuestion}
               />
             )
       }
-
     </Content>
   </Wrapper>
 );

@@ -18,19 +18,25 @@ const Wrapper = styled.div<Pick<Props, 'active'>>`
   align-items: center;
   height: 50px;
   font-weight: 900;
+  cursor: pointer;
 `;
 
 const Variant = styled.span`
   font-size: 1.5em;
   border-right: 2px solid ${({ theme }) => theme.colors.white};
+  text-align: center;
+`;
+
+const Answer = styled.span`
+  padding-left: 10px;
 `;
 
 const Option: React.FC<Props> = ({
   variant, answer, tickFn, active,
 }) => (
-  <Wrapper active={active} onClick={() => tickFn(answer)}>
+  <Wrapper active={active} onClick={() => tickFn(variant)}>
     <Variant>{variant}</Variant>
-    <span>{answer}</span>
+    <Answer>{answer}</Answer>
   </Wrapper>
 );
 export default Option;

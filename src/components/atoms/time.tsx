@@ -1,4 +1,5 @@
 import React from 'react';
+import Paragraph from './paragraph';
 
 type Props = {
   seconds: number,
@@ -6,10 +7,10 @@ type Props = {
 };
 
 const Time: React.FC<Props> = ({ seconds, minutes }) => (
-  <p>
+  <Paragraph>
     {minutes}
     :
     {seconds}
-  </p>
+  </Paragraph>
 );
 export default Time;

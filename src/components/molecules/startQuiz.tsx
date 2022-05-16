@@ -10,12 +10,12 @@ type Props = {
 };
 
 const Wrapper = styled.div`
-  padding: 5vh 10vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-align-items: center;
+  align-items: center;
+
 `;
 
 const Close = styled.span`

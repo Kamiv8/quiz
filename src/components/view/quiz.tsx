@@ -8,7 +8,7 @@ const Quiz = () => {
   const location = useLocation();
   const { language } = useAppSelector((state) => state.language);
   const {
-    closeQuiz, startQuiz, isActive, minutes, seconds,
+    closeQuiz, startQuiz, isActive, minutes, seconds, questionNumber, nextQuestion, actualQuestion,
   } = useQuiz(location.pathname);
   return (
 
@@ -18,6 +18,10 @@ const Quiz = () => {
       startQuizFn={startQuiz}
       isActive={isActive}
       time={{ seconds, minutes }}
+      questionNumber={questionNumber}
+      nextQuestion={nextQuestion}
+      answers={actualQuestion?.answers}
+      question={actualQuestion?.question}
     />
   );
 };
