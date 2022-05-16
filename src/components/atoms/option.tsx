@@ -6,11 +6,12 @@ type Props = {
   variant: VariantType
   answer: string,
   tickFn: Function,
-  active: boolean,
+  selected: VariantType | null
 };
 
-const Wrapper = styled.div<Pick<Props, 'active'>>`
-  background-color: ${({ theme, active }) => (!active ? theme.colors.blue : theme.colors.second)};
+const Wrapper = styled.div.attrs((props: { selected: boolean }) => ({ selected: props.selected }))`
+  
+  background-color: ${({ theme, selected }) => (selected ? theme.colors.second : theme.colors.blue)};
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.white};
   display: grid;
@@ -32,9 +33,9 @@ const Answer = styled.span`
 `;
 
 const Option: React.FC<Props> = ({
-  variant, answer, tickFn, active,
+  variant, answer, tickFn, selected,
 }) => (
-  <Wrapper active={active} onClick={() => tickFn(variant)}>
+  <Wrapper selected={selected === variant} onClick={() => tickFn(variant)}>
     <Variant>{variant}</Variant>
     <Answer>{answer}</Answer>
   </Wrapper>

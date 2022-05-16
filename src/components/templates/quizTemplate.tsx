@@ -16,7 +16,10 @@ type Props = {
   questionNumber: number,
   nextQuestion: Function,
   question: string,
-  answers: AnswerType[]
+  answers: AnswerType[],
+  finishQuiz: Function,
+  tickAnswer: Function,
+  selected: VariantType | null,
 };
 
 const Wrapper = styled.main`
@@ -47,7 +50,8 @@ const QuizTemplate: React.FC<Props> = ({
   quizName, startQuizFn, closeQuiz, isActive,
   time,
   questionNumber,
-  nextQuestion, answers, question,
+  nextQuestion, answers, question, finishQuiz,
+  tickAnswer, selected,
 }) => (
   <Wrapper>
     <Content>
@@ -65,9 +69,10 @@ const QuizTemplate: React.FC<Props> = ({
                 questionNumber={questionNumber}
                 question={question}
                 answers={answers}
-                isActive
-                tickFn={(answer: VariantType) => console.log(answer)}
+                tickFn={tickAnswer}
                 nextQuestion={nextQuestion}
+                finishQuiz={finishQuiz}
+                selected={selected}
               />
             )
       }

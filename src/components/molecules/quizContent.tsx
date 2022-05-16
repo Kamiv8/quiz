@@ -8,15 +8,17 @@ import { useAppSelector } from '../../app/hooks';
 import Time from '../atoms/time';
 import { TimerType } from '../../features/game/timerType';
 import Paragraph from '../atoms/paragraph';
+import VariantType from '../../features/quiz/variantType';
 
 type Props = {
   time: TimerType,
   questionNumber: number,
   question: string,
   answers: AnswerType[],
-  isActive: boolean,
   tickFn: Function,
-  nextQuestion: Function
+  nextQuestion: Function,
+  finishQuiz: Function,
+  selected: VariantType | null
 };
 
 const AnswersWrapper = styled.div`
@@ -54,9 +56,10 @@ const QuizContent: React.FC<Props> = ({
   question,
   questionNumber,
   answers,
-  isActive,
   tickFn,
   nextQuestion,
+  finishQuiz,
+  selected,
 }) => {
   const { language } = useAppSelector((state) => state.language);
 
@@ -77,14 +80,14 @@ const QuizContent: React.FC<Props> = ({
             variant={item.variant}
             answer={item.answer}
             tickFn={tickFn}
-            active={isActive}
+            selected={selected}
           />
         ))}
       </AnswersWrapper>
       <ButtonWrapper>
         { questionNumber <= 8
           ? (<Button onClick={() => nextQuestion()}>{language.words.next}</Button>)
-          : (<Button>FINISH</Button>) }
+          : (<Button onClick={() => finishQuiz()}>FINISH</Button>) }
 
       </ButtonWrapper>
     </>

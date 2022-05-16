@@ -3,18 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import testQuestion from '../features/quiz/testQuestion';
 import { QuestionWithAnswers } from '../features/quiz/quizApiType';
+import VariantType from '../features/quiz/variantType';
 // import { useState } from 'react';
 // import testQuestion from '../features/quiz/testQuestion';
 
 const useQuiz = (type?: string | undefined) => {
   const {
-    seconds, minutes, start, reset,
+    seconds, minutes, start, reset, pause,
   } = useStopwatch({ autoStart: false });
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState<boolean>(false);
   const [actualQuestion, setActualQuestion] = useState<QuestionWithAnswers>({ answers: [], question: '' });
   // eslint-disable-next-line prefer-const
   let [questionNumber, setQuestionNumber] = useState<number>(0);
+  const [answers, setAnswers] = useState<VariantType[]>([]);
+  const [selected, setSelected] = useState<VariantType | null>(null);
 
   const closeQuiz = () => {
     navigate('/');
@@ -28,13 +31,23 @@ const useQuiz = (type?: string | undefined) => {
     setActualQuestion(testQuestion[questionNumber]);
   };
 
-  const tickAnswer = () => {
-
+  const tickAnswer = (variant: VariantType) => {
+    setSelected((prevState) => (prevState === variant ? null : variant));
   };
 
   const nextQuestion = () => {
     setActualQuestion(testQuestion[questionNumber]);
-    setQuestionNumber(questionNumber += 1);
+    if (selected !== null) {
+      setAnswers((prevState) => [...prevState, selected]);
+      setQuestionNumber(questionNumber += 1);
+      setSelected(null);
+    }
+  };
+  const finishQuiz = () => {
+    if (answers.length === 9 && selected !== null) {
+      setAnswers([...answers, selected]);
+      pause();
+    }
   };
 
   return {
@@ -47,6 +60,8 @@ const useQuiz = (type?: string | undefined) => {
     nextQuestion,
     actualQuestion,
     questionNumber,
+    finishQuiz,
+    selected,
   };
 };
 export default useQuiz;
