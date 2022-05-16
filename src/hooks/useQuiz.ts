@@ -4,6 +4,7 @@ import { useState } from 'react';
 import testQuestion from '../features/quiz/testQuestion';
 import { QuestionWithAnswers } from '../features/quiz/quizApiType';
 import VariantType from '../features/quiz/variantType';
+import GameStateType from '../features/quiz/gameStateType';
 // import { useState } from 'react';
 // import testQuestion from '../features/quiz/testQuestion';
 
@@ -12,7 +13,7 @@ const useQuiz = (type?: string | undefined) => {
     seconds, minutes, start, reset, pause,
   } = useStopwatch({ autoStart: false });
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<GameStateType>(GameStateType.start);
   const [actualQuestion, setActualQuestion] = useState<QuestionWithAnswers>({ answers: [], question: '' });
   // eslint-disable-next-line prefer-const
   let [questionNumber, setQuestionNumber] = useState<number>(0);
@@ -27,7 +28,7 @@ const useQuiz = (type?: string | undefined) => {
 
   const startQuiz = () => {
     start();
-    setIsActive(true);
+    setIsActive(GameStateType.content);
     setActualQuestion(testQuestion[questionNumber]);
   };
 
@@ -47,6 +48,7 @@ const useQuiz = (type?: string | undefined) => {
     if (answers.length === 9 && selected !== null) {
       setAnswers([...answers, selected]);
       pause();
+      setIsActive(GameStateType.finish);
     }
   };
 

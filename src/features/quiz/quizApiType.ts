@@ -15,3 +15,12 @@ export interface QuestionModel {
   type: QuizName,
   questions: QuestionWithAnswers[]
 }
+
+export interface StatisticType {
+  correct: number,
+  wrong: number,
+  time: {
+    seconds: number,
+    minutes: number
+  }
+}

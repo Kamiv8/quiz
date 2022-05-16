@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import background from '../../assets/background1.svg';
-import StartQuiz from '../molecules/startQuiz';
-import QuizContent from '../molecules/quizContent';
 import { TimerType } from '../../features/game/timerType';
 import { AnswerType } from '../../features/quiz/quizApiType';
 import VariantType from '../../features/quiz/variantType';
+import GameStateType from '../../features/quiz/gameStateType';
+import StartQuiz from '../molecules/startQuiz';
+import QuizContent from '../molecules/quizContent';
+import FinishQuiz from '../molecules/FinishQuiz';
 
 type Props = {
   quizName: string,
   startQuizFn: Function,
   closeQuiz: Function,
-  isActive: boolean,
+  isActive: GameStateType,
   time: TimerType,
   questionNumber: number,
   nextQuestion: Function,
@@ -56,25 +58,35 @@ const QuizTemplate: React.FC<Props> = ({
   <Wrapper>
     <Content>
       {
-          !isActive ? (
-            <StartQuiz
-              title={quizName}
-              startQuizFn={startQuizFn}
-              closeQuiz={closeQuiz}
-            />
-          )
-            : (
-              <QuizContent
-                time={time}
-                questionNumber={questionNumber}
-                question={question}
-                answers={answers}
-                tickFn={tickAnswer}
-                nextQuestion={nextQuestion}
-                finishQuiz={finishQuiz}
-                selected={selected}
-              />
-            )
+        (() => {
+          switch (isActive) {
+            case GameStateType.start:
+              return (
+                <StartQuiz
+                  title={quizName}
+                  startQuizFn={startQuizFn}
+                  closeQuiz={closeQuiz}
+                />
+              );
+            case GameStateType.content:
+              return (
+                <QuizContent
+                  time={time}
+                  questionNumber={questionNumber}
+                  question={question}
+                  answers={answers}
+                  tickFn={tickAnswer}
+                  nextQuestion={nextQuestion}
+                  finishQuiz={finishQuiz}
+                  selected={selected}
+                />
+              );
+            case GameStateType.finish:
+              return <FinishQuiz time={{ seconds: 21, minutes: 32 }} correct={21} wrong={32} />;
+            default:
+              return '';
+          }
+        })()
       }
     </Content>
   </Wrapper>

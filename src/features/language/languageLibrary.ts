@@ -24,6 +24,7 @@ const LanguageLibrary: LanguageLibraryType = {
       back: 'back',
       next: 'next',
       time: 'time',
+      save: 'save',
     },
   },
   pl: {
@@ -49,6 +50,7 @@ const LanguageLibrary: LanguageLibraryType = {
       back: 'wstecz',
       next: 'następne',
       time: 'czas',
+      save: 'zapisz',
     },
   },
 

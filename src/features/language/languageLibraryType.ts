@@ -21,6 +21,7 @@ export interface Library {
     back: string,
     next: string,
     time: string,
+    save: string,
   }
 
 }

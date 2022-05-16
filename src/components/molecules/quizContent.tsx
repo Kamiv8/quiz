@@ -88,7 +88,6 @@ const QuizContent: React.FC<Props> = ({
         { questionNumber <= 8
           ? (<Button onClick={() => nextQuestion()}>{language.words.next}</Button>)
           : (<Button onClick={() => finishQuiz()}>FINISH</Button>) }
-
       </ButtonWrapper>
     </>
   );
