@@ -1,14 +1,16 @@
 import { useStopwatch } from 'react-timer-hook';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import testQuestion from '../features/quiz/testQuestion';
+import { useEffect, useState } from 'react';
+// import testQuestion from '../features/quiz/testQuestion';
 import { QuestionWithAnswers } from '../features/quiz/quizApiType';
 import VariantType from '../features/quiz/variantType';
 import GameStateType from '../features/quiz/gameStateType';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { postAnswersToApi } from '../features/quiz/quizSlice';
 // import { useState } from 'react';
 // import testQuestion from '../features/quiz/testQuestion';
 
-const useQuiz = (type?: string | undefined) => {
+const useQuiz = (type: string) => {
   const {
     seconds, minutes, start, reset, pause,
   } = useStopwatch({ autoStart: false });
@@ -19,17 +21,20 @@ const useQuiz = (type?: string | undefined) => {
   let [questionNumber, setQuestionNumber] = useState<number>(0);
   const [answers, setAnswers] = useState<VariantType[]>([]);
   const [selected, setSelected] = useState<VariantType | null>(null);
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(postAnswersToApi(type));
+  }, [dispatch, type]);
+  const { questionWithAnswers } = useAppSelector((state) => state.quiz);
   const closeQuiz = () => {
     navigate('/');
     reset();
-    console.log(type);
   };
 
   const startQuiz = () => {
     start();
     setIsActive(GameStateType.content);
-    setActualQuestion(testQuestion[questionNumber]);
+    setActualQuestion(questionWithAnswers[questionNumber]);
   };
 
   const tickAnswer = (variant: VariantType) => {
@@ -37,10 +42,10 @@ const useQuiz = (type?: string | undefined) => {
   };
 
   const nextQuestion = () => {
-    setActualQuestion(testQuestion[questionNumber]);
     if (selected !== null) {
       setAnswers((prevState) => [...prevState, selected]);
       setQuestionNumber(questionNumber += 1);
+      setActualQuestion(questionWithAnswers[questionNumber]);
       setSelected(null);
     }
   };

@@ -6,7 +6,7 @@ import correctSVG from '../../assets/correct.svg';
 import wrongSVG from '../../assets/wrong.svg';
 import alarmSVG from '../../assets/alarmx.svg';
 import Button from '../atoms/button';
-import { TimerType } from '../../features/game/timerType';
+import { TimerType } from '../../features/quiz/timerType';
 import Time from '../atoms/time';
 
 type Props = {

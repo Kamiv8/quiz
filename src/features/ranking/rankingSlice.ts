@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import initialState from './initialState';
 import testUserData from './testUserData';
+
+const getBestUsers = createAsyncThunk('', async () => {});
 
 const rankingSlice = createSlice({
   name: 'ranking',
@@ -8,6 +10,14 @@ const rankingSlice = createSlice({
   reducers: {
     getBestPlayers: (state) => {
       state.players = testUserData;
+    },
+  },
+  extraReducers: {
+    [getBestUsers.pending as any]: () => {
+
+    },
+    [getBestUsers.fulfilled as any]: () => {
+
     },
   },
 });

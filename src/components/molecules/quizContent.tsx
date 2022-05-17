@@ -6,7 +6,7 @@ import Option from '../atoms/option';
 import Button from '../atoms/button';
 import { useAppSelector } from '../../app/hooks';
 import Time from '../atoms/time';
-import { TimerType } from '../../features/game/timerType';
+import { TimerType } from '../../features/quiz/timerType';
 import Paragraph from '../atoms/paragraph';
 import VariantType from '../../features/quiz/variantType';
 

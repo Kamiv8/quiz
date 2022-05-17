@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import background from '../../assets/background1.svg';
-import { TimerType } from '../../features/game/timerType';
+import { TimerType } from '../../features/quiz/timerType';
 import { AnswerType } from '../../features/quiz/quizApiType';
 import VariantType from '../../features/quiz/variantType';
 import GameStateType from '../../features/quiz/gameStateType';
