@@ -7,7 +7,7 @@ import VariantType from '../../features/quiz/variantType';
 import GameStateType from '../../features/quiz/gameStateType';
 import StartQuiz from '../molecules/startQuiz';
 import QuizContent from '../molecules/quizContent';
-import FinishQuiz from '../molecules/FinishQuiz';
+import FinishQuiz from '../molecules/finishQuiz';
 
 type Props = {
   quizName: string,
@@ -22,6 +22,7 @@ type Props = {
   finishQuiz: Function,
   tickAnswer: Function,
   selected: VariantType | null,
+  tickedAnswers: VariantType[]
 };
 
 const Wrapper = styled.main`
@@ -53,7 +54,7 @@ const QuizTemplate: React.FC<Props> = ({
   time,
   questionNumber,
   nextQuestion, answers, question, finishQuiz,
-  tickAnswer, selected,
+  tickAnswer, selected, tickedAnswers,
 }) => (
   <Wrapper>
     <Content>
@@ -82,7 +83,7 @@ const QuizTemplate: React.FC<Props> = ({
                 />
               );
             case GameStateType.finish:
-              return <FinishQuiz time={{ seconds: 21, minutes: 32 }} correct={21} wrong={32} />;
+              return <FinishQuiz time={time} tickedAnswers={tickedAnswers} />;
             default:
               return '';
           }

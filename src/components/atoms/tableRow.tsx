@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TimerType } from '../../features/quiz/timerType';
 
 type Props = {
   username: string,
   quizName: string,
-  time: string,
+  time: TimerType,
   index: number,
 };
 
@@ -29,7 +30,11 @@ const TableRow: React.FC<Props> = ({
     <Td first>{index}</Td>
     <Td>{username}</Td>
     <Td>{quizName}</Td>
-    <Td>{time}</Td>
+    <Td>
+      {time.minutes}
+      :
+      {time.seconds}
+    </Td>
   </Tr>
 );
 export default TableRow;

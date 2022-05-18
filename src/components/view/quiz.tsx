@@ -19,6 +19,7 @@ const Quiz = () => {
     actualQuestion,
     tickAnswer,
     selected,
+    answers,
   } = useQuiz(location.pathname);
   return (
 
@@ -35,6 +36,7 @@ const Quiz = () => {
       finishQuiz={finishQuiz}
       tickAnswer={tickAnswer}
       selected={selected}
+      tickedAnswers={answers}
     />
   );
 };

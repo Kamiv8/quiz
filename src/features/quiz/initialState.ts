@@ -6,9 +6,8 @@ export interface InitialState {
     {
       question: string,
       answers: any,
-
     },
-  ]
+  ],
 }
 
 export const initialState: InitialState = {

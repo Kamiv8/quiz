@@ -1,6 +1,6 @@
-import { DataBestPlayersType, QuizName } from './dataBestPlayersType';
+import { QuizName } from './dataBestPlayersType';
 
-const TestUserData: DataBestPlayersType[] = [
+const TestUserData = [
   {
     username: 'Tomasz',
     quizName: QuizName.html,

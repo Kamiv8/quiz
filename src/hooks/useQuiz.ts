@@ -1,14 +1,11 @@
 import { useStopwatch } from 'react-timer-hook';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import testQuestion from '../features/quiz/testQuestion';
 import { QuestionWithAnswers } from '../features/quiz/quizApiType';
 import VariantType from '../features/quiz/variantType';
 import GameStateType from '../features/quiz/gameStateType';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { postAnswersToApi } from '../features/quiz/quizSlice';
-// import { useState } from 'react';
-// import testQuestion from '../features/quiz/testQuestion';
+import { getAnswersFromApi } from '../features/quiz/quizSlice';
 
 const useQuiz = (type: string) => {
   const {
@@ -21,11 +18,15 @@ const useQuiz = (type: string) => {
   let [questionNumber, setQuestionNumber] = useState<number>(0);
   const [answers, setAnswers] = useState<VariantType[]>([]);
   const [selected, setSelected] = useState<VariantType | null>(null);
+
   const dispatch = useAppDispatch();
+
   useEffect(() => {
-    dispatch(postAnswersToApi(type));
+    dispatch(getAnswersFromApi(type));
   }, [dispatch, type]);
+
   const { questionWithAnswers } = useAppSelector((state) => state.quiz);
+
   const closeQuiz = () => {
     navigate('/');
     reset();
@@ -69,6 +70,7 @@ const useQuiz = (type: string) => {
     questionNumber,
     finishQuiz,
     selected,
+    answers,
   };
 };
 export default useQuiz;

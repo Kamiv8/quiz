@@ -4,7 +4,7 @@ const LanguageLibrary: LanguageLibraryType = {
   en: {
     home: {
       welcome: 'Check your knowledge about FrontEnd',
-      heading1: 'Our Quiz',
+      heading1: 'Our Quizzes',
       heading2: 'Ranking',
     },
     quizName: {
@@ -16,7 +16,7 @@ const LanguageLibrary: LanguageLibraryType = {
     },
     words: {
       congratulation: 'Congratulation',
-      startQuiz: 'Do you want to start quiz?',
+      startQuiz: 'Do you want to start a quiz?',
       correct: 'correct answers',
       wrong: 'wrong answers',
       finish: 'finish',

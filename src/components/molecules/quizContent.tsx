@@ -21,6 +21,13 @@ type Props = {
   selected: VariantType | null
 };
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 2fr 0.4fr;
+  height: 100%;
+  align-items: center;
+`;
+
 const AnswersWrapper = styled.div`
   display: grid;
   gap: 20px;
@@ -36,12 +43,12 @@ const AnswersWrapper = styled.div`
 
 const HeaderWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
   justify-items: center;
   align-items: center;
   margin: 1vh 0;
   @media screen and ${({ theme }) => theme.device.laptopL} {
-    margin: 5vh 0;
+    margin: 2vh 0;
   }
 `;
 
@@ -64,7 +71,7 @@ const QuizContent: React.FC<Props> = ({
   const { language } = useAppSelector((state) => state.language);
 
   return (
-    <>
+    <Wrapper>
       <HeaderWrapper>
         <Time seconds={time.seconds} minutes={time.minutes} />
         <Title>{question}</Title>
@@ -89,7 +96,7 @@ const QuizContent: React.FC<Props> = ({
           ? (<Button onClick={() => nextQuestion()}>{language.words.next}</Button>)
           : (<Button onClick={() => finishQuiz()}>FINISH</Button>) }
       </ButtonWrapper>
-    </>
+    </Wrapper>
   );
 };
 

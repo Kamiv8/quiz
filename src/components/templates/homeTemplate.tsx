@@ -57,10 +57,11 @@ const SVG = styled(PersonSvg)`
 const LayoutTitle = styled(Title)`
     text-align: center;
     margin: 10vh 0;
+  font-size: 40px;
 `;
 
 const QuizSection = styled.section`
-  
+    
 `;
 
 const CardWrapper = styled.div`

@@ -1,3 +1,5 @@
+import { TimerType } from '../quiz/timerType';
+
 export enum QuizName {
   html = 'html',
   css = 'css',
@@ -8,6 +10,8 @@ export enum QuizName {
 
 export interface DataBestPlayersType {
   username: string,
-  quizName: QuizName,
-  time: string
+  quiz: QuizName,
+  time: TimerType,
+  wrong: number,
+  correct: number
 }

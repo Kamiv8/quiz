@@ -102,14 +102,18 @@ const BestUser = () => {
         <UserContent>
           <div>
             <p>Quiz:</p>
-            <p>{user?.quizName}</p>
+            <p>{user?.quiz}</p>
           </div>
           <div>
             <p>
               {language.words.time}
               :
             </p>
-            <p>{user?.time}</p>
+            <p>
+              {user?.time.minutes}
+              :
+              {user?.time.seconds}
+            </p>
           </div>
         </UserContent>
       </UserWrapper>

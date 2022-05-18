@@ -8,11 +8,15 @@ import alarmSVG from '../../assets/alarmx.svg';
 import Button from '../atoms/button';
 import { TimerType } from '../../features/quiz/timerType';
 import Time from '../atoms/time';
+import Title from '../atoms/title';
+import Paragraph from '../atoms/paragraph';
+import Input from '../atoms/input';
+import useSaveResults from '../../hooks/useSaveResults';
+import VariantType from '../../features/quiz/variantType';
 
 type Props = {
-  correct: number,
-  wrong: number,
   time: TimerType,
+  tickedAnswers: VariantType[]
 };
 
 const Wrapper = styled.div`
@@ -21,6 +25,12 @@ const Wrapper = styled.div`
   @media screen and ${({ theme }) => theme.device.laptopL} {
     grid-template-columns: repeat(2,1fr);
   }
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Congratulation = styled.div`
@@ -48,36 +58,43 @@ const RowWrapper = styled.div`
 
 `;
 
-const FinishQuiz: React.FC<Props> = ({ correct, wrong, time }) => {
-  const { language } = useAppSelector((state) => state.language);
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
+const FinishQuiz: React.FC<Props> = ({ time, tickedAnswers }) => {
+  const { language } = useAppSelector((state) => state.language);
+  const {
+    backToHome, results, save, setUsername,
+  } = useSaveResults(tickedAnswers);
   return (
     <Wrapper>
-      <div>
-        <p>
+      <Content>
+        <Title>
           {language.words.congratulation}
-        </p>
+        </Title>
         <RowWrapper>
           <Icon src={correctSVG} alt="correct icon" />
-          <p>{correct}</p>
-          <p>{language.words.correct}</p>
+          <Paragraph>{results?.correct}</Paragraph>
+          <Paragraph>{language.words.correct}</Paragraph>
         </RowWrapper>
         <RowWrapper>
           <Icon src={wrongSVG} alt="wrong icon" />
-          <p>{wrong}</p>
-          <p>{language.words.wrong}</p>
+          <Paragraph>{results?.wrong}</Paragraph>
+          <Paragraph>{language.words.wrong}</Paragraph>
         </RowWrapper>
         <RowWrapper>
           <Icon src={alarmSVG} alt="alarm icon" />
           <Time seconds={time.seconds} minutes={time.minutes} />
-          <p>{language.words.time}</p>
+          <Paragraph>{language.words.time}</Paragraph>
         </RowWrapper>
-        <div>
-          <input type="text" placeholder="Podaj swój pseudonim" />
-          <Button>{language.words.save}</Button>
-          <Button>{language.words.finish}</Button>
-        </div>
-      </div>
+        <Input onChange={(e) => setUsername(e.target.value)} name="username" type="text" placeholder="Podaj swój pseudonim" />
+        <ButtonsWrapper>
+          <Button onClick={() => backToHome()}>{language.words.finish}</Button>
+          <Button onClick={() => save(time)}>{language.words.save}</Button>
+        </ButtonsWrapper>
+      </Content>
       <Congratulation />
     </Wrapper>
   );
