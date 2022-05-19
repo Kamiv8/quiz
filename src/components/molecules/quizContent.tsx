@@ -68,7 +68,7 @@ const QuizContent: React.FC<Props> = ({
   finishQuiz,
   selected,
 }) => {
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
 
   return (
     <Wrapper>
@@ -93,7 +93,7 @@ const QuizContent: React.FC<Props> = ({
       </AnswersWrapper>
       <ButtonWrapper>
         { questionNumber <= 8
-          ? (<Button onClick={() => nextQuestion()}>{language.words.next}</Button>)
+          ? (<Button onClick={() => nextQuestion()}>{library.words.next}</Button>)
           : (<Button onClick={() => finishQuiz()}>FINISH</Button>) }
       </ButtonWrapper>
     </Wrapper>

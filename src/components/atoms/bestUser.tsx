@@ -92,7 +92,7 @@ const User = styled.p`
 `;
 
 const BestUser = () => {
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
   const [user] = useAppSelector((state) => state.ranking.players);
   return (
     <Wrapper>
@@ -106,7 +106,7 @@ const BestUser = () => {
           </div>
           <div>
             <p>
-              {language.words.time}
+              {library.words.time}
               :
             </p>
             <p>

@@ -6,7 +6,7 @@ import { useAppSelector } from '../../app/hooks';
 
 const Quiz = () => {
   const location = useLocation();
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
   const {
     closeQuiz,
     startQuiz,
@@ -24,7 +24,7 @@ const Quiz = () => {
   return (
 
     <QuizTemplate
-      quizName={language.words.startQuiz}
+      quizName={library.words.startQuiz}
       closeQuiz={closeQuiz}
       startQuizFn={startQuiz}
       isActive={isActive}

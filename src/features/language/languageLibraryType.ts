@@ -27,7 +27,8 @@ export interface Library {
 }
 
 export interface InitialState {
-  language: Library
+  language: Language,
+  library: Library
 }
 
 export interface LanguageLibraryType {

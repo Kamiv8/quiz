@@ -12,32 +12,32 @@ export interface CardDataType {
 }
 
 const useCardData = () => {
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
 
   const cardData: CardDataType[] = [
     {
       image: HtmlSVG,
-      name: language.quizName.html,
+      name: library.quizName.html,
       type: 'html',
     },
     {
       image: CssSVG,
-      name: language.quizName.css,
+      name: library.quizName.css,
       type: 'css',
     },
     {
       image: JsSVG,
-      name: language.quizName.js,
+      name: library.quizName.js,
       type: 'js',
     },
     {
       image: AngularSVG,
-      name: language.quizName.angular,
+      name: library.quizName.angular,
       type: 'angular',
     },
     {
       image: ReactSVG,
-      name: language.quizName.react,
+      name: library.quizName.react,
       type: 'react',
     },
   ];

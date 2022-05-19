@@ -64,7 +64,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const FinishQuiz: React.FC<Props> = ({ time, tickedAnswers }) => {
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
   const {
     backToHome, results, save, setUsername,
   } = useSaveResults(tickedAnswers);
@@ -72,27 +72,27 @@ const FinishQuiz: React.FC<Props> = ({ time, tickedAnswers }) => {
     <Wrapper>
       <Content>
         <Title>
-          {language.words.congratulation}
+          {library.words.congratulation}
         </Title>
         <RowWrapper>
           <Icon src={correctSVG} alt="correct icon" />
           <Paragraph>{results?.correct}</Paragraph>
-          <Paragraph>{language.words.correct}</Paragraph>
+          <Paragraph>{library.words.correct}</Paragraph>
         </RowWrapper>
         <RowWrapper>
           <Icon src={wrongSVG} alt="wrong icon" />
           <Paragraph>{results?.wrong}</Paragraph>
-          <Paragraph>{language.words.wrong}</Paragraph>
+          <Paragraph>{library.words.wrong}</Paragraph>
         </RowWrapper>
         <RowWrapper>
           <Icon src={alarmSVG} alt="alarm icon" />
           <Time seconds={time.seconds} minutes={time.minutes} />
-          <Paragraph>{language.words.time}</Paragraph>
+          <Paragraph>{library.words.time}</Paragraph>
         </RowWrapper>
         <Input onChange={(e) => setUsername(e.target.value)} name="username" type="text" placeholder="Podaj swój pseudonim" />
         <ButtonsWrapper>
-          <Button onClick={() => backToHome()}>{language.words.finish}</Button>
-          <Button onClick={() => save(time)}>{language.words.save}</Button>
+          <Button onClick={() => backToHome()}>{library.words.finish}</Button>
+          <Button onClick={() => save(time)}>{library.words.save}</Button>
         </ButtonsWrapper>
       </Content>
       <Congratulation />

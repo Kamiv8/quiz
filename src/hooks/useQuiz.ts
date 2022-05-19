@@ -20,9 +20,10 @@ const useQuiz = (type: string) => {
   const [selected, setSelected] = useState<VariantType | null>(null);
 
   const dispatch = useAppDispatch();
-
+  const { language } = useAppSelector((state) => state);
+  console.log(Object.keys(language.language));
   useEffect(() => {
-    dispatch(getAnswersFromApi(type));
+    dispatch(getAnswersFromApi({ type, language: 'pl' }));
   }, [dispatch, type]);
 
   const { questionWithAnswers } = useAppSelector((state) => state.quiz);

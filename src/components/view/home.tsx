@@ -5,7 +5,7 @@ import HomeTemplate from '../templates/homeTemplate';
 import useCardData from '../../hooks/useCardData';
 
 const Home = () => {
-  const { language } = useAppSelector((state) => state.language);
+  const { library } = useAppSelector((state) => state.language);
   const quizzes = useCardData();
   const navigate = useNavigate();
 
@@ -19,11 +19,11 @@ const Home = () => {
 
   return (
     <HomeTemplate
-      welcome={language.home.welcome}
-      heading1={language.home.heading1}
-      heading2={language.home.heading2}
+      welcome={library.home.welcome}
+      heading1={library.home.heading1}
+      heading2={library.home.heading2}
       quizzes={quizzes}
-      copy={language.words.copyright}
+      copy={library.words.copyright}
       selectQuiz={navigateToStartQuiz}
     />
   );

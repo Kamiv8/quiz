@@ -1,7 +1,8 @@
-import { InitialState } from './languageLibraryType';
+import { InitialState, Language } from './languageLibraryType';
 import languageLibrary from './languageLibrary';
 
 const initialState: InitialState = {
-  language: languageLibrary.pl,
+  language: Language.pl,
+  library: languageLibrary.pl,
 };
 export default initialState;
