@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Button from './button';
+import transformShadowAnimation from '../../styles/animations/transformShadowAnimation';
 
 type Props = {
   type: string,
@@ -34,6 +35,10 @@ const Wrapper = styled.div.attrs((props: WrapperProps) => ({
   box-shadow: 25px 25px 0 ${({ theme }) => theme.colors.main};
   border-radius: 10px;
   padding: 20px 0;
+  &:hover {
+    
+   animation: ${transformShadowAnimation} .2s  ease-in-out forwards;
+  }
   ${({ type, theme }) => {
     switch (type) {
       case 'css':
