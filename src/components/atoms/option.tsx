@@ -11,7 +11,7 @@ type Props = {
 
 const Wrapper = styled.div.attrs((props: { selected: boolean }) => ({ selected: props.selected }))`
   
-  background-color: ${({ theme, selected }) => (selected ? theme.colors.second : theme.colors.blue)};
+  background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.white};
   display: grid;
@@ -20,6 +20,7 @@ const Wrapper = styled.div.attrs((props: { selected: boolean }) => ({ selected: 
   height: 50px;
   font-weight: 900;
   cursor: pointer;
+  border: ${({ theme, selected }) => (selected ? `5px solid ${theme.colors.main}` : 'none')}
 `;
 
 const Variant = styled.span`

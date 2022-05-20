@@ -48,7 +48,7 @@ const theme: ThemeType = {
     second: '#e33720',
     gray: '#333333',
     black50: 'rgba(0,0,0,.5)',
-    blue: '#0075FF',
+    blue: '#539CF1',
   },
   device: {
     mobileS: `(min-width: ${size.mobileS})`,
