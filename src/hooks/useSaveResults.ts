@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import VariantType from '../features/quiz/variantType';
 import { TimerType } from '../features/quiz/timerType';
+import environment from '../environment';
 
 const useSaveResults = (tickedAnswers: VariantType[]) => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const useSaveResults = (tickedAnswers: VariantType[]) => {
   const [username, setUsername] = useState<string>('');
   const { pathname } = useLocation();
   const save = (time: TimerType) => {
-    axios.post('http://localhost:8080/api/save', {
+    axios.post(`${environment.url}api/save`, {
       username,
       time,
       quiz: pathname.slice(1, pathname.length),
@@ -23,7 +24,7 @@ const useSaveResults = (tickedAnswers: VariantType[]) => {
 
   useEffect(() => {
     axios.post(
-      'http://localhost:8080/api/summary',
+      `${environment.url}api/summary`,
       { type: pathname.slice(1, pathname.length), answers: tickedAnswers },
     ).then((x) => setResults(x.data));
   }, [pathname, tickedAnswers]);

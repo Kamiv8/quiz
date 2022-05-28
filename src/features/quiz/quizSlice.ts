@@ -3,9 +3,10 @@ import axios from 'axios';
 import StateType from './stateType';
 import { initialState } from './initialState';
 import { QuestionWithAnswers } from './quizApiType';
+import environment from '../../environment';
 
 export const getAnswersFromApi = createAsyncThunk('quiz/data', async ({ type, language }: { type: string, language: string }) => {
-  const response = await axios.get<QuestionWithAnswers>(`http://localhost:8080/api${type}/${language}`);
+  const response = await axios.get<QuestionWithAnswers>(`${environment.url}api${type}/${language}`);
   return response.data;
 });
 
